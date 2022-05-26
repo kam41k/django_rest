@@ -2,19 +2,41 @@ import React from "react";
 
 
 const ToDoItem = ({item}) => {
-    return(
-        <tr>
-            <td>
-                {item.text}
-            </td>
-            <td>
-                {item.user}
-            </td>
-            <td>
-                {item.project}
-            </td>
-        </tr>
-    )
+    if (item.isActive) {
+        return (
+            <tr>
+                <td>
+                    {item.text}
+                </td>
+                <td>
+                    {item.user}
+                </td>
+                <td>
+                    {item.project}
+                </td>
+                <td>
+                    True
+                </td>
+            </tr>
+        )
+    } else {
+        return (
+            <tr>
+                <td>
+                    {item.text}
+                </td>
+                <td>
+                    {item.user}
+                </td>
+                <td>
+                    {item.project}
+                </td>
+                <td>
+                    False
+                </td>
+            </tr>
+        )
+    }
 }
 
 
@@ -29,6 +51,9 @@ const ToDoList = ({list}) => {
             </th>
             <th>
                 Project name
+            </th>
+            <th>
+                Is active
             </th>
             {list.map((item) => <ToDoItem item={item} />)}
         </table>
