@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from .models import User
-from.serializers import UserModelSerializer
+from .serializers import UserModelSerializer
 
 # Create your views here.
 class UserViewSet(ModelViewSet):
