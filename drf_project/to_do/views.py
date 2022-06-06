@@ -4,7 +4,7 @@ from rest_framework.viewsets import ModelViewSet
 from rest_framework.pagination import LimitOffsetPagination
 from .models import Project, ToDo
 from .serializers import ProjectModelSerializer, ToDoModelSerializer
-from .filters import ProjectFilter
+from .filters import ProjectFilter, ToDoFilter
 
 
 # Create your views here.
@@ -27,6 +27,7 @@ class ToDoViewSet(ModelViewSet):
     queryset = ToDo.objects.all()
     serializer_class = ToDoModelSerializer
     pagination_class = ToDoOffsetPagination
+    filterset_class = ToDoFilter
 
     def destroy(self, request, pk=None):
         to_do = get_object_or_404(ToDo, pk=pk)
