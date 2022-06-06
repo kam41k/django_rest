@@ -1,4 +1,4 @@
-from rest_framework.serializers import HyperlinkedModelSerializer, StringRelatedField
+from rest_framework.serializers import HyperlinkedModelSerializer, StringRelatedField, ModelSerializer
 from .models import Project, ToDo
 
 
@@ -10,9 +10,9 @@ class ProjectModelSerializer(HyperlinkedModelSerializer):
         fields = '__all__'
 
 
-class ToDoModelSerializer(HyperlinkedModelSerializer):
-    user = StringRelatedField()
-    project = StringRelatedField()
+class ToDoModelSerializer(ModelSerializer):
+    # user = StringRelatedField()
+    # project = StringRelatedField()
 
     class Meta:
         model = ToDo
