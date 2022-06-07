@@ -1,6 +1,7 @@
 import React from "react";
 import logo from './logo.svg';
 import './App.css';
+import {HashRouter, Route, Link} from 'react-router-dom';
 import UserList from "./components/user";
 import ProjectList from "./components/project";
 import ToDoList from "./components/toDo";
@@ -21,7 +22,7 @@ class App extends React.Component {
     componentDidMount() {
         axios.get('http://127.0.0.1:8000/api/users')
             .then(response => {
-                const users = response.data
+                const users = response.data.results
                 this.setState(
                     {
                         'users': users
@@ -30,7 +31,7 @@ class App extends React.Component {
             }).catch(error => console.log(error))
         axios.get('http://127.0.0.1:8000/api/project')
             .then(response => {
-                const projects = response.data
+                const projects = response.data.results
                 this.setState(
                     {
                         'projects': projects
@@ -39,7 +40,7 @@ class App extends React.Component {
             }).catch(error => console.log(error))
         axios.get('http://127.0.0.1:8000/api/todo')
             .then(response => {
-                const toDo = response.data
+                const toDo = response.data.results
                 this.setState(
                     {
                         'toDo': toDo
@@ -51,13 +52,27 @@ class App extends React.Component {
 
     render() {
         return (
-            <div>
-                <MenuComponent/>
-                <UserList users={this.state.users}/>
-                <ProjectList projects={this.state.projects}/>
-                <ToDoList list={this.state.toDo}/>
-                <FooterComponent/>
+            <div className="App">
+                <HashRouter>
+                    <nav>
+                        <ul>
+                            <li>
+                                <Link to='/'>Users</Link>
+                            </li>
+                            <li>
+                                <Link to='/projects'>Projects</Link>
+                            </li>
+                            <li>
+                                <Link to='/todo'>To Do</Link>
+                            </li>
+                        </ul>
+                    </nav>
+                    <Route exact path='/' component={() => <UserList users={this.state.users}/>}/>
+                    <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}/>}/>
+                    <Route exact path='/todo' component={() => <ToDoList list={this.state.toDo}/>}/>
+                </HashRouter>
             </div>
+
         )
     }
 }
