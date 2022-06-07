@@ -2,7 +2,7 @@ from rest_framework.serializers import HyperlinkedModelSerializer, StringRelated
 from .models import Project, ToDo
 
 
-class ProjectModelSerializer(HyperlinkedModelSerializer):
+class ProjectModelSerializer(ModelSerializer):
     users = StringRelatedField(many=True)
     
     class Meta:

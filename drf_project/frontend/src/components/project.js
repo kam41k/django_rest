@@ -1,39 +1,24 @@
-import React from "react";
+import React from 'react'
+import {Link, useParams} from 'react-router-dom'
 
-
-const ProjectItem = ({project}) => {
-    return(
-        <tr>
-            <td>
-                {project.name}
-            </td>
-            <td>
-                {project.users}
-            </td>
-            <td>
-                {project.link}
-            </td>
-        </tr>
-    )
-}
-
-
-const ProjectList = ({projects}) => {
+const ProjectItem = ({item}) => {
     return (
-        <table>
-            <th>
-                Project Name
-            </th>
-            <th>
-                Authorized Users
-            </th>
-            <th>
-                Link
-            </th>
-            {projects.map((project) => <ProjectItem project={project} />)}
-        </table>
+        <p>
+            <p>Project name: {item.name}</p>
+            <p>Users: {item.users}</p>
+            <p>Project link: {item.link}</p>
+        </p>
     )
 }
 
+const Project = ({projects}) => {
+    const {id} = useParams();
+    const filtered_projects = projects.filter((item) => item.id == id);
+    return (
+        <p>
+            {filtered_projects.map((item) => <ProjectItem item={item}/>)}
+        </p>
+    )
+}
 
-export default ProjectList
+export default Project

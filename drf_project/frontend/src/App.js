@@ -1,9 +1,10 @@
 import React from "react";
 import logo from './logo.svg';
 import './App.css';
-import {HashRouter, Route, Link} from 'react-router-dom';
+import {BrowserRouter, Route, Link} from 'react-router-dom';
 import UserList from "./components/user";
-import ProjectList from "./components/project";
+import ProjectList from "./components/projects";
+import Project from "./components/project";
 import ToDoList from "./components/toDo";
 import MenuComponent from "./components/menu";
 import FooterComponent from "./components/footer";
@@ -53,7 +54,7 @@ class App extends React.Component {
     render() {
         return (
             <div className="App">
-                <HashRouter>
+                <BrowserRouter>
                     <nav>
                         <ul>
                             <li>
@@ -70,7 +71,8 @@ class App extends React.Component {
                     <Route exact path='/' component={() => <UserList users={this.state.users}/>}/>
                     <Route exact path='/projects' component={() => <ProjectList projects={this.state.projects}/>}/>
                     <Route exact path='/todo' component={() => <ToDoList list={this.state.toDo}/>}/>
-                </HashRouter>
+                    <Route path="/project/:id"><Project projects={this.state.projects} /></Route>
+                </BrowserRouter>
             </div>
 
         )
