@@ -13,7 +13,7 @@ const ProjectItem = ({item}) => {
 
 const Project = ({projects}) => {
     const {id} = useParams();
-    const filtered_projects = projects.filter((item) => item.id == id);
+    const filtered_projects = projects.filter((item) => item.id === id);
     return (
         <p>
             {filtered_projects.map((item) => <ProjectItem item={item}/>)}
